@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShop - Beli Item Game Mewah</title>
+    <style>
+        /* Reset dan Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        h1, h2 {
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+        }
+
+        /* Container Utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Daftar Game */
+        .games {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .game-card {
+            background: linear-gradient(145deg, #2a2a4e, #1e1e3f);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+        }
+        .game-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .game-card h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        /* Item Section */
+        .items {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .item-card {
+            background: linear-gradient(145deg, #3a3a5e, #2e2e4f);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .item-card:hover {
+            transform: scale(1.05);
+        }
+        .item-card button {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .item-card button:hover {
+            background: linear-gradient(45deg, #ffed4e, #ffd700);
+        }
+
+        /* Form Pembelian */
+        .purchase-form {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .purchase-form h2 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        .purchase-form input, .purchase-form select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: #fff;
+        }
+        .purchase-form button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #00d4ff, #090979);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .purchase-form button:hover {
+            background: linear-gradient(45deg, #090979, #00d4ff);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GameShop Premium</h1>
+        <p>Belanja Item Game dengan Gaya Mewah</p>
+    </header>
+
+    <div class="container">
+        <h2>Pilih Game Favoritmu</h2>
+        <div class="games">
+            <div class="game-card" onclick="showItems('ml')">
+                <img src="https://via.placeholder.com/300x150/ffd700/000?text=Mobile+Legends" alt="Mobile Legends">
+                <h3>Mobile Legends</h3>
+                <p>Top-up Diamond & Skin</p>
+            </div>
+            <div class="game-card" onclick="showItems('pubg')">
+                <img src="https://via.placeholder.com/300x150/ff4500/000?text=PUBG+Mobile" alt="PUBG Mobile">
+                <h3>PUBG Mobile</h3>
+                <p>UC & Bundle</p>
+            </div>
+            <div class="game-card" onclick="showItems('ff')">
+                <img src="https://via.placeholder.com/300x150/32cd32/000?text=Free+Fire" alt="Free Fire">
+                <h3>Free Fire</h3>
+                <p>Diamond & Elite Pass</p>
+            </div>
+        </div>
+
+        <div id="items-ml" class="items">
+            <div class="item-card">
+                <h4>100 Diamond</h4>
+                <p>Rp 20.000</p>
+                <button onclick="showPurchase('100 Diamond - Rp 20.000')">Beli Sekarang</button>
+            </div>
+            <div class="item-card">
+                <h4>500 Diamond</h4>
+                <p>Rp 90.000</p>
+                <button onclick="showPurchase('500 Diamond - Rp 90.000')">Beli Sekarang</button>
+            </div>
+            <div class="item-card">
+                <h4>Skin Legendary</h4>
+                <p>Rp 150.000</p>
+                <button onclick="showPurchase('Skin Legendary - Rp 150.000')">Beli Sekarang</button>
+            </div>
+        </div>
+
+        <div id="items-pubg" class="items">
+            <div class="item-card">
+                <h4>60 UC</h4>
+                <p>Rp 15.000</p>
+                <button onclick="showPurchase('60 UC - Rp 15.000')">Beli Sekarang</button>
+            </div>
+            <div class="item-card">
+                <h4>325 UC</h4>
+                <p>Rp 75.000</p>
+                <button onclick="showPurchase('325 UC - Rp 75.000')">Beli Sekarang</button>
+            </div>
+        </div>
+
+        <div id="items-ff" class="items">
+            <div class="item-card">
+                <h4>100 Diamond</h4>
+                <p>Rp 18.000</p>
+                <button onclick="showPurchase('100 Diamond - Rp 18.000')">Beli Sekarang</button>
+            </div>
+            <div class="item-card">
+                <h4>310 Diamond</h4>
+                <p>Rp 50.000</p>
+                <button onclick="showPurchase('310 Diamond - Rp 50.000')">Beli Sekarang</button>
+            </div>
+        </div>
+
+        <div id="purchase-form" class="purchase-form">
+            <h2>Konfirmasi Pembelian</h2>
+            <p id="item-details"></p>
+            <input type="text" placeholder="Nama Lengkap" required>
+            <input type="email" placeholder="Email" required>
+            <select required>
+                <option value="">Pilih Metode Pembayaran</option>
+                <option value="ovo">OVO</option>
+                <option value="gopay">GoPay</option>
+                <option value="dana">DANA</option>
+            </select>
+            <button onclick="alert('Pembelian berhasil! (Demo)')">Bayar Sekarang</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 GameShop. Semua hak dilindungi. | Desain Mewah untuk Pengalaman Premium</p>
+    </footer>
+
+    <script>
+        function showItems(game) {
+            // Sembunyikan semua items
+            document.querySelectorAll('.items').forEach(item => item.style.display = 'none');
+            // Tampilkan items game yang dipilih
+            document.getElementById('items-' + game).style.display = 'grid';
+        }
+
+        function showPurchase(details) {
+            document.getElementById('item-details').textContent = 'Item: ' + details;
+            document.getElementById('purchase-form').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
